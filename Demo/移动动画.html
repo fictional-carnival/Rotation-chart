@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    .content {
+        width: 100%;
+        height: 300px;
+        margin: 0 auto;
+    }
+    .content img {
+        width:1283px;   
+        display: block;
+        margin: 0 auto;
+    }
+    #banner {
+        width:1280px;
+        height: 200px;
+        background: royalblue;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+    .banner {
+        width: 1000%;
+        height: 200px;
+        position: relative;
+    }
+    .ul {
+        width:1000%;
+        height: 200px;
+        
+    }
+    li {
+        width: 320px;
+        height: 200px;
+        list-style-type: none;
+        float: left;
+    }
+    .ul img {
+        width: 320px;
+        height: 200px;
+    }
+</style>
+<body>
+    <div class="content">
+        <img class="title" src="img/title.png" alt="">
+        <div id="banner">
+            <div class="banner">
+                <ul class="ul">
+                    
+                </ul>
+            </div>
+        </div>
+        <img class="footer" src="img/footer.png" alt="">
+    </div>
+</body>
+<script src="js/jquery-1.12.2.min.js"></script>
+<script>
+    let data = ['img/1.jpg','img/2.jpg','img/3.jpg','img/4.jpg','img/5.jpg','img/6.jpg','img/7.jpg','img/8.jpg','img/9.jpg'
+,'img/10.jpg','img/11.jpg','img/12.jpg','img/13.jpg','img/14.jpg','img/15.jpg','img/16.jpg','img/17.jpg']
+    
+    console.log("你好啊")
+    let index = 4;
+    let banners = $('.banner');
+    let count = data.length;
+    let uls = $('.ul');
+    for(let i = 0;i < count+5;i++) {
+        if(i < 4){
+            $(uls).append('<li><img src="'+data[count-4+i]+'">/li>');
+        }else if(i == count+4){
+            $(uls).append('<li><img src="'+data[0]+'">/li>');
+        }else{
+            $(uls).append('<li><img src="'+data[i-4]+'">/li>');
+        }
+    }
+    count = $('ul li').length;
+    banners.css('left',-(index*320)+'px');
+    let timeR = setInterval(function(){
+            index++;
+            banners.css('transition','left 0.5s');
+            banners.css('left',-(index*320)+'px');
+            setTimeout(function(){
+                if(index == (count-4)){
+                    index = 1;
+                    banners.css('transition','none');
+                      banners.css('left',-(index*320)+'px');
+                }
+            },500)
+    },2000)
+</script>
+</html>
